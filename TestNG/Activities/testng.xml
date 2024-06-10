@@ -1,12 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
-<suite name="SuiteExample" parallel="false">
+<suite name="Suite" parallel="false">
     <test name="Test">
-
+        <groups>
+        <run>
+            <include name="ButtonTests" />
+            <!--<exclude name="HeaderTests" />-->
+        </run>
+        </groups>
 
         <classes>
             <class name="SuiteExample.DemoOne"/>
             <class name="SuiteExample.DemoTwo"/>
+            <class name="activities.activity5"/>
         </classes>
     </test> <!-- Test -->
 </suite> <!-- Suite -->
