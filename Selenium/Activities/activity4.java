@@ -37,6 +37,6 @@ public class activity4 {
         System.out.println("The text of the grey button is: "+greybutton.getText());
 
         // Close the browser
-        driver.close();
+        driver.quit();
     }
 }
