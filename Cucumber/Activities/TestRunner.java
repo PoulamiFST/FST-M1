@@ -9,7 +9,11 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features = "src/test/java/Features",
         glue = {"stepDefinitions"},
-        tags = "@activity4",
+        tags = "@activity5",
+        // tags = "@activity1",
+        // tags = "@activity2",
+        // tags = "@activity3",
+        // tags = "@activity4",
         publish = true,
         plugin = {"html:src/reports/HTML_Report.html",
                 "json: src/reports/JSON_Report.json",
