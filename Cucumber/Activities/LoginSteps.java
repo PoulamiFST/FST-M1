@@ -7,9 +7,11 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.junit.Assert;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -22,7 +24,7 @@ public class LoginSteps extends BaseClass{
         WebDriverManager.firefoxdriver().setup();
 
         driver = new FirefoxDriver();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
 
@@ -110,6 +112,27 @@ public class LoginSteps extends BaseClass{
 
         Assertions.assertEquals(messageinUI,message);
     }
+
+    @Then("Read the page title and confirmation message")
+        public void readTitleAndHeading() {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("action-confirmation")));
+
+            //Read the page title and heading
+            String pageTitle = driver.getTitle();
+            String confirmMessage = driver.findElement(By.id("action-confirmation")).getText();
+
+            //Print the page title and heading
+            System.out.println("Page title is: " + pageTitle);
+            System.out.println("Login message is: " + confirmMessage);
+
+            if(confirmMessage.contains("admin")) {
+                Assert.assertEquals(confirmMessage, "Welcome Back, admin");
+            } else {
+                Assert.assertEquals(confirmMessage, "Invalid Credentials");
+            }
+        }
+
+
 
     @AfterAll
     public static void closeTheBrowser() {
